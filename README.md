@@ -7,3 +7,5 @@ An example of using Rust in Unity
 2. CD into the `Rust` directory
 3. Build the DLL using `cargo build --release`
 4. Done, the DLL is inside `target/release`
+### DLL Import name
+The name to use when using `DllImport` is `UnityRust`, which can be changed in `Rust/Cargo.toml`
