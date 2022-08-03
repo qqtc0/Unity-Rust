@@ -22,4 +22,5 @@ pub extern "C" fn string_passing() -> *mut c_char {
 }
 ```
 > Then as you can see from the comment, it's returned as an `IntPtr` which you can read using `Marshal`.
+> 
 > Note: Tagging your `.dll` with **Load plugin on Startup** is recommended as it can help avoid DLL not found exceptions.
