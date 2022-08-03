@@ -17,7 +17,7 @@ The name to use when using `DllImport` is `UnityRust`, which can be changed in `
 ```rust
 #[no_mangle]
 pub extern "C" fn string_passing() -> *mut c_char {
-    let res = CString::new("Hello from Rust, issue #128!").expect("CString::new() failed!\n");
+    let res = CString::new("Hello from Rust!").expect("CString::new() failed!\n");
     res.into_raw() // This is returned as an IntPtr on the C#-side
 }
 ```
