@@ -13,12 +13,16 @@ The name to use when using `DllImport` is `UnityRust`, which can be changed in `
 > **Warning**:
 > Passing strings from Rust to C# isn't as simple as just returning a `String`, etc.
 >
+> Using `CString` and passing it to C# can result in memory leaks if you don't free it inside of Rust after it has been used in C#.
+>
+> For more information on how to do it, read how `CString` works, then you should be able to pass the pointer back to Rust, take ownership and drop it.
+>
 > Here's an example of what passing strings in Rust to C# looks like:
 ```rust
 #[no_mangle]
-pub extern "C" fn string_passing() -> *mut c_char {
+pub extern "C" fn string_passing() -> *const c_char {
     let res = CString::new("Hello from Rust!").expect("CString::new() failed!\n");
-    res.into_raw() // This is returned as an IntPtr on the C#-side
+    res.into_raw() // This is returned as an IntPtr on the C#-side, the owner is no longer Rust.
 }
 ```
 > Then as you can see from the comment, it's returned as an `IntPtr` which you can read using `Marshal`.
